@@ -26,10 +26,15 @@ class Console1984::Shield
 
   private
     def extend_protected_systems
+      extend_amazing_print
       extend_irb
       extend_core_ruby
       extend_sockets unless Console1984.protected_urls.blank?
       extend_active_record
+    end
+
+    def extend_amazing_print
+      AmazingPrint::ActiveRecord.prepend(Console1984::Ext::AmazingPrint::ActiveRecord)
     end
 
     def extend_irb
